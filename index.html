@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SCRAMBLEX</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <!-- Neon Scan Lines -->
+  <div id="scan-lines"></div>
+
+<!-- Animated Background -->
+  <div id="animated-background">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+   <!-- Floating Game Icons -->
+  <div id="floating-icons">
+    <div class="floating-icon" style="top: 10%; left: 5%;">🎮</div>
+    <div class="floating-icon" style="top: 20%; right: 8%;">⚡</div>
+    <div class="floating-icon" style="top: 60%; left: 3%;">🏆</div>
+    <div class="floating-icon" style="top: 70%; right: 5%;">🎯</div>
+    <div class="floating-icon" style="top: 40%; left: 2%;">💎</div>
+    <div class="floating-icon" style="top: 80%; right: 10%;">🌟</div>
+    <div class="floating-icon" style="top: 30%; right: 3%;">🚀</div>
+    <div class="floating-icon" style="top: 50%; left: 1%;">⭐</div>
+  </div>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <h1 class="title-glow">SCRAMBLEX</h1>
+    <div id="loading-bar-container">
+      <div id="loading-bar"></div>
+    </div>
+  </div>
+
+  <!-- Game Over Overlay -->
+  <div id="game-over-overlay" class="hidden">
+    <div id="game-over-content">
+      <h1 id="game-over-title">TIME'S UP!</h1>
+      <p id="game-over-message">You ran out of time! The word was:</p>
+      <div id="game-over-word"></div>
+      <div id="game-over-stats">
+        <p>Level Reached: <span id="final-level">1</span></p>
+        <p>XP Earned: <span id="final-xp">0</span></p>
+      </div>
+      <button id="play-again-btn" class="cyber-button">Play Again</button>
+    </div>
+  </div>
+
+  <!-- Level Up Popup Overlay -->
+<div id="levelup-overlay" class="hidden">
+  <div id="levelup-content">
+    <div id="levelup-burst"></div>
+    <div id="levelup-title">LEVEL UP!</div>
+    <div id="levelup-level">Level <span id="levelup-level-number">2</span></div>
+    <div id="levelup-category">Next Challenge: <span id="levelup-category-name">Animals</span></div>
+    <div id="levelup-xp">+<span id="levelup-xp-gained">25</span> XP</div>
+    <div id="levelup-particles"></div>
+  </div>
+</div>
+
+<!-- Victory Overlay -->
+<div id="victory-overlay" class="hidden">
+  <div id="victory-content">
+    <div id="victory-burst-container">
+      <div id="victory-burst-1"></div>
+      <div id="victory-burst-2"></div>
+      <div id="victory-burst-3"></div>
+    </div>
+    <div id="victory-crown">👑</div>
+    <div id="victory-title">CHAMPION!</div>
+    <div id="victory-subtitle">SCRAMBLEX MASTER</div>
+    <div id="victory-message">You've conquered all <span id="victory-max-level">99</span> levels!</div>
+    <div id="victory-stats">
+      <div class="victory-stat">
+        <span class="victory-stat-value" id="victory-final-level">99</span>
+        <span class="victory-stat-label">Levels</span>
+      </div>
+      <div class="victory-stat">
+        <span class="victory-stat-value" id="victory-final-xp">9999</span>
+        <span class="victory-stat-label">Total XP</span>
+      </div>
+      <div class="victory-stat">
+        <span class="victory-stat-value">100%</span>
+        <span class="victory-stat-label">Complete</span>
+      </div>
+    </div>
+    <div id="victory-achievement">🏆 WORD MASTER ACHIEVED 🏆</div>
+    <button id="victory-play-again-btn" class="cyber-button victory-button">Play Again</button>
+    <div id="victory-fireworks"></div>
+  </div>
+</div>
+
+  <!-- Exit Confirmation Overlay -->
+  <div id="exit-overlay" class="hidden">
+    <div id="exit-content">
+      <h2 id="exit-title">⚠️ EXIT GAME</h2>
+      <p id="exit-message">Are you sure you want to exit?</p>
+      <div id="exit-warning">Your current progress will be lost!</div>
+      <div id="exit-stats">
+        <p>Current Level: <span id="exit-level">1</span></p>
+        <p>Current XP: <span id="exit-xp">0</span></p>
+      </div>
+      <div id="exit-buttons">
+        <button id="confirm-exit-btn" class="cyber-button exit-confirm">Yes, Exit</button>
+        <button id="cancel-exit-btn" class="cyber-button exit-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Game Container -->
+<div id="game-container" class="hidden">
+  <div id="game-container-inner">
+
+  <!-- Left Controls Panel -->
+<div id="left-controls-panel">
+  <div class="panel-section">
+    <h2 class="panel-title"><span class="control-emoji">🎮</span>CONTROLS</h2>
+    <div class="control-item">
+      <span class="control-emoji">🔤</span>
+      <span class="control-text">Type the letter keys to select the letters you see!</span>
+    </div>
+    <div class="control-item">
+      <span class="control-emoji">🔄</span>
+      <span class="control-text">Hit the Space key to reshuffle the letters!</span>
+    </div>
+    <div class="control-item">
+      <span class="control-emoji">⌫</span>
+      <span class="control-text">Press Backspace to delete a letter if you made a mistake!</span>
+    </div>
+  </div>
+</div>
+
+  <!-- Game Area -->
+  <div id="game-area">
+
+    <!-- Pause Overlay -->
+<div id="pause-overlay" class="hidden">
+    <div id="pause-content">
+        <h2 id="pause-title">⏸️ GAME PAUSED</h2>
+        <p id="pause-message">Game is paused. Click Resume to continue.</p>
+        <div id="pause-stats">
+            <p>Current Level: <span id="pause-level">1</span></p>
+            <p>Round Time Left: <span id="pause-time">30</span>s</p>
+            <p class="auto-resume-warning">⚠️ Auto-Resume in: <span id="auto-resume-time">10</span>s</p>
+        </div>
+        <button id="resume-btn" class="cyber-button">Resume Game</button>
+    </div>
+</div>
+
+    <div id="level-info">
+      <span id="level-label">Level: 1</span>
+      <div id="xp-bar-container" title="XP Progress">
+        <div id="xp-bar"></div>
+      </div>
+      <span id="timer-label">Time Left: <span id="timer">--</span>s</span>
+    </div>
+
+    <div id="scramble-word-container">
+      <!-- Letters will display here with flip animation on updates -->
+    </div>
+
+    <div id="answer-container">
+      <!-- Player's current answer letters appear here -->
+    </div>
+
+    <div id="main-controls">
+      <button id="start-btn" class="cyber-button">Start</button>
+      <button id="pause-btn" class="cyber-button">Pause</button>
+      <button id="exit-btn" class="cyber-button">Exit</button>
+    </div>
+  </div>
+
+    <!--Instructions Panel -->
+        <div id="controls-panel">
+      <div class="panel-section">
+        <h2 class="panel-title">⚙️ MECHANICS</h2>
+        <div class="control-item">
+          <span class="control-emoji">⏱️</span>
+          <span class="control-text">Complete the word before time runs out</span>
+        </div>
+        <div class="control-item">
+          <span class="control-emoji">📈</span>
+          <span class="control-text">Levels up to 20 with increasing difficulty</span>
+        </div>
+        <div class="control-item">
+          <span class="control-emoji">⭐</span>
+          <span class="control-text">Earn XP to level up</span>
+        </div>
+        <div class="control-item">
+          <span class="control-emoji">⌨️</span>
+          <span class="control-text">Use virtual keyboard or physical keyboard</span>
+        </div>
+      </div>
+
+      <div class="panel-section game-info">
+        <h3 id="category-label">Category: </h3>
+        <h3 id="word-length-label">Word Length: </h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- Mouse Trail Container -->
+  <div id="mouse-trail"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
